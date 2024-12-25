@@ -8,7 +8,6 @@ const handleZodError = (err: ZodError): TGenericErrorResponse => {
       message: issue.message,
     };
   });
-
   const statusCode = 400;
   return {
     statusCode,
@@ -16,5 +15,4 @@ const handleZodError = (err: ZodError): TGenericErrorResponse => {
     errorSources,
   };
 };
-
 export default handleZodError;

@@ -9,9 +9,7 @@ const blogSchema = new Schema<TBlog>(
     isPublished: { type: Boolean, default: true },
   },
   {
-    toJSON: {
-      virtuals: true,
-    },
+    timestamps: true,
   },
 );
 

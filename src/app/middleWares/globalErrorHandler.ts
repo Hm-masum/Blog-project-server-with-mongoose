@@ -60,7 +60,7 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
     ];
   }
 
-  res.send(statusCode).json({
+  res.status(statusCode).json({
     success: false,
     statusCode,
     message,
@@ -68,4 +68,5 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
     stack: config.NODE_ENV === 'development' ? err?.stack : null,
   });
 };
+
 export default globalErrorHandler;
