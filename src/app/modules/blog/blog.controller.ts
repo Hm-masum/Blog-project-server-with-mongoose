@@ -4,7 +4,7 @@ import sendResponse from '../../utils/sendResponse';
 import { BlogService } from './blog.service';
 
 const createBlog = catchAsync(async (req, res) => {
-  const result = await BlogService.createBlogIntoDB(req.body);
+  const result = await BlogService.createBlogIntoDB(req.body, req.user);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -27,7 +27,7 @@ const getAllBlogs = catchAsync(async (req, res) => {
 
 const updateBlog = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const result = await BlogService.updateBlogFromDB(id, req.body);
+  const result = await BlogService.updateBlogFromDB(id, req.body, req.user);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -39,7 +39,7 @@ const updateBlog = catchAsync(async (req, res) => {
 
 const deleteBlog = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const result = await BlogService.deleteBlogIntoDB(id);
+  const result = await BlogService.deleteBlogIntoDB(id, req.user);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,

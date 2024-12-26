@@ -4,9 +4,11 @@ import cors from 'cors';
 import notFound from './app/middleWares/notFound';
 import globalErrorHandler from './app/middleWares/globalErrorHandler';
 import router from './app/routes';
+import cookieParser from 'cookie-parser';
 
 // parser
 app.use(express.json());
+app.use(cookieParser());
 app.use(cors());
 
 app.use('/api', router);
