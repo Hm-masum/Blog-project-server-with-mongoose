@@ -17,7 +17,7 @@ const userSchema = new Schema<TUser, UserModel>(
       },
       unique: true,
     },
-    password: { type: String, required: true },
+    password: { type: String, required: true, select: 0 },
     role: { type: String, enum: ['admin', 'user'], default: 'user' },
     isBlocked: { type: Boolean, default: false },
   },
@@ -33,6 +33,11 @@ userSchema.pre('save', async function (next) {
     user.password,
     Number(config.bcrypt_salt_rounds),
   );
+  next();
+});
+
+userSchema.post('save', function (doc, next) {
+  doc.password = '';
   next();
 });
 

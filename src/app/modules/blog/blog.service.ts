@@ -3,6 +3,8 @@ import { TBlog } from './blog.interface';
 import { Blog } from './blog.model';
 import AppError from '../../errors/AppError';
 import httpStatus from 'http-status';
+import QueryBuilder from '../../builder/QueryBuilder';
+import { BlogSearchableFields } from './blog.constant';
 
 const createBlogIntoDB = async (payload: TBlog, user: JwtPayload) => {
   const blogData = { ...payload, author: user?._id };
@@ -11,8 +13,13 @@ const createBlogIntoDB = async (payload: TBlog, user: JwtPayload) => {
   return result;
 };
 
-const getAllBlogsFromDB = async () => {
-  const result = await Blog.find().populate('author');
+const getAllBlogsFromDB = async (query: Record<string, unknown>) => {
+  const blogQuery = new QueryBuilder(Blog.find().populate('author'), query)
+    .search(BlogSearchableFields)
+    .filter()
+    .sort();
+
+  const result = await blogQuery.modelQuery;
   return result;
 };
 
