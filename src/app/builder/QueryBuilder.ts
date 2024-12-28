@@ -26,16 +26,18 @@ class QueryBuilder<T> {
   }
 
   filter() {
-    const filter = this.query.filter;
+    const filter = this?.query?.filter;
 
-    this.modelQuery = this.modelQuery.find({ author: filter });
+    if (filter) {
+      this.modelQuery = this.modelQuery.find({ author: filter });
+    }
 
     return this;
   }
 
   sort() {
-    const sortBy = this.query.sortBy || 'createdAt';
-    const sortOrder = this.query.sortOrder || 'desc';
+    const sortBy = this?.query?.sortBy || 'createdAt';
+    const sortOrder = this?.query?.sortOrder || 'desc';
     const convertInOne = sortOrder === 'desc' ? -1 : 1;
 
     this.modelQuery = this.modelQuery.sort({
