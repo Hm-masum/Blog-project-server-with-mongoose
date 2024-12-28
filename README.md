@@ -46,7 +46,7 @@ https://blog-project-drab-one.vercel.app/api/auth/login
 https://blog-project-drab-one.vercel.app/api/blogs
 ```
 - ***Method***: POST
-- ***Request Header:*** Authorization: Bearer <token>
+- ***Request Header:*** Authorization: Bearer < token >
 - ***Request Body***:
 ```json
 {
@@ -63,7 +63,7 @@ https://blog-project-drab-one.vercel.app/api/blogs
 https://blog-project-drab-one.vercel.app/api/blogs/:id
 ```
 - ***Method***: PATCH
-- ***Request Header:*** Authorization: Bearer <token>
+- ***Request Header:*** Authorization: Bearer < token >
 - ***Request Body***:
 ```json
 {
@@ -80,7 +80,7 @@ https://blog-project-drab-one.vercel.app/api/blogs/:id
 https://blog-project-drab-one.vercel.app/api/blogs/:id
 ```
 - ***Method***: DELETE
-- ***Request Header:*** Authorization: Bearer <token>
+- ***Request Header:*** Authorization: Bearer < token >
 
 ####   
 #### 2.4 Get All Blogs (Public)
