@@ -8,7 +8,12 @@ import { User } from '../modules/user/user.model';
 
 const auth = (...requiredRoles: TUserRole[]) => {
   return catchAsync(async (req, res, next) => {
-    const token = req.headers.authorization;
+    const receiveToken = req.headers.authorization;
+    if (!receiveToken || !receiveToken.startsWith('Bearer ')) {
+      throw new AppError(httpStatus.UNAUTHORIZED, 'You are not authorized');
+    }
+
+    const token = receiveToken?.split(' ')[1];
     if (!token) {
       throw new AppError(httpStatus.UNAUTHORIZED, 'You are not authorized');
     }

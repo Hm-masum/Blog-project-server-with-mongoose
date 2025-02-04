@@ -14,7 +14,14 @@ const createUserIntoDB = async (payload: TUser) => {
   }
 
   const result = await User.create(payload);
-  return result;
+
+  const showRes = {
+    _id: result._id,
+    name: result.name,
+    email: result.email,
+  };
+
+  return showRes;
 };
 
 const loginUser = async (payload: TLoginUser) => {
